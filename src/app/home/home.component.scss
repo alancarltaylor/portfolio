@@ -14,8 +14,10 @@ $green: #1ff042;
 	}
 }
 
-body{
-  background-color: black;
+:host{
+	display: block;
+	// height: 100%;
+	// width: 100%;
 }
 
 .four-oh-four{

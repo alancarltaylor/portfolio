@@ -5,13 +5,16 @@ declare var $ :any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  document.body.style.backgroundColor = "black";
+ }
 
   ngOnInit() {
+
     var inputReady = true;
 var input = $('.404-input');
 input.focus();
