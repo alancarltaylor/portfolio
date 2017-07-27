@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SillynessComponent } from './sillyness/sillyness.component';
 
 // Define the routes
 const ROUTES = [
@@ -25,7 +26,8 @@ const ROUTES = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SillynessComponent
   ],
   imports: [
     BrowserModule,

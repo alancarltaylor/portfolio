@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
@@ -34,14 +36,10 @@ $('.four-oh-four-form').on('submit', function(e){
   }
 });
 
-function resetForm(withKittens){
+function resetForm(){
   var message = "Sorry that command is not recognized."
   var input = $('.404-input');
 
-  if (withKittens){
-    $('.kittens').removeClass('kittens');
-    message = "Huzzzzzah Kittehs!"
-  }
 
   $('.new-output').removeClass('new-output');
   input.val('');
@@ -92,7 +90,7 @@ function resetForm(withKittens){
 			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kittens', function(result){
 				gif = result.data.image_url;
 				$('.terminal').append('<img class="kitten-gif" src="' + gif + '"">');
-				resetForm(true);
+				resetForm();
 			});
 		}, (lines.length * 100) + 1000);
 	}
