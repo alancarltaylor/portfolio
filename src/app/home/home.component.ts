@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+// import { FormsModule, NgForm } from '@angular/forms';
 // declare var jquery: any;
 // declare var $: any;
 
@@ -8,19 +8,20 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
+  userInput: string;
+  // inputReady: boolean;
   // userInput: string;
-  inputReady: boolean;
-  @ViewChild('terminal') terminal:ElementRef;
+  // @ViewChild('terminal') terminal:ElementRef;
 
   constructor() {
     // document.body.style.backgroundColor = "black";
   }
 
-  ngOnInit() {
-    // this.inputReady = true;
-    // let input = $('.404-input');
-  }
+  // doStuff(){
+  //   console.log("hello");
+  // }
+}
 
   // onSubmit(e: NgForm) {
   //   // if (this.userInput === 'kittens') {
@@ -110,20 +111,18 @@ export class HomeComponent implements OnInit {
   //   })
   // }
 
-  toUnderscore(copyString, line, newChar) {
-    copyString[newChar[1]] = newChar[0];
-    line.text(copyString.join(''));
-  }
-
-  fromUnderscore(copyString, splitString, newChar, line) {
-    copyString[newChar[1]] = splitString[newChar[1]];
-    line.text(copyString.join(""));
-  }
+  // toUnderscore(copyString, line, newChar) {
+  //   copyString[newChar[1]] = newChar[0];
+  //   line.text(copyString.join(''));
+  // }
+  //
+  // fromUnderscore(copyString, splitString, newChar, line) {
+  //   copyString[newChar[1]] = splitString[newChar[1]];
+  //   line.text(copyString.join(""));
+  // }
 
 
   // shuffle(o) {
   //   for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   //   return o;
   // };
-
-}

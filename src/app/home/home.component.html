@@ -1,7 +1,7 @@
 <form class="four-oh-four-form">
-    <input autofocus type="text" class="404-input" [(ngModel)]="userInput" name="terminal">
+    <input autofocus autocomplete="off" type="text" class="404-input" [(ngModel)]="userInput" name="terminal">
 </form>
 <div class="terminal">
       <p class="prompt">Welcome to Alan Taylor's portfolio site. To begin, type Hello.</p>
-      <p [(ngModel)]="userInput" class="prompt output new-output"></p>
+      <p class="prompt output new-output">{{this.userInput}}</p>
 </div>
