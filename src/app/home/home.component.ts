@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/platform-browser';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent{
   userInput: string;
   // inputReady: boolean;
   // userInput: string;
@@ -26,16 +26,17 @@ export class HomeComponent {
 
 
   onSubmit(e: NgForm) {
+    console.log("e: ", e);
     if (this.userInput === 'kittens') {
       // this.showKittens();
     } else {
-      this.resetForm();
+      this.resetForm(e);
     }
   };
 
-  resetForm() {
+  resetForm(userInput) {
     let message = "Sorry that command is not recognized."
-    this.userInput = '';
+    // this.userInput = '';
 
     let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')
 
