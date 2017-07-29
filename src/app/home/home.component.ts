@@ -15,7 +15,7 @@ export class HomeComponent {
   // @ViewChild('terminal') terminal:ElementRef;
 
   constructor() {
-    // document.body.style.backgroundColor = "black";
+    document.body.style.backgroundColor = "black";
   }
 
   // doStuff(){
