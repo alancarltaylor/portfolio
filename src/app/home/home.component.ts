@@ -1,5 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-// import { FormsModule, NgForm } from '@angular/forms';
+import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { DOCUMENT } from '@angular/platform-browser';
+
 // declare var jquery: any;
 // declare var $: any;
 
@@ -12,35 +14,40 @@ export class HomeComponent {
   userInput: string;
   // inputReady: boolean;
   // userInput: string;
-  // @ViewChild('terminal') terminal:ElementRef;
+  @ViewChild('terminal') terminal:ElementRef;
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: Document) {
     document.body.style.backgroundColor = "black";
   }
 
   // doStuff(){
   //   console.log("hello");
   // }
-}
 
-  // onSubmit(e: NgForm) {
-  //   // if (this.userInput === 'kittens') {
-  //     // this.showKittens();
-  //   } else {
-  //     // this.resetForm();
-  //   }
-  // };
 
-  // resetForm() {
-  //   let message = "Sorry that command is not recognized."
-  //   this.userInput = '';
-  //
-  //   this.terminal.nativeElement.insertAdjacentHTML('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>');
-  //
-  //   $('.new-output').velocity(
-  //     'scroll'
-  //     ), { duration: 100 }
-  // }
+  onSubmit(e: NgForm) {
+    if (this.userInput === 'kittens') {
+      // this.showKittens();
+    } else {
+      this.resetForm();
+    }
+  };
+
+  resetForm() {
+    let message = "Sorry that command is not recognized."
+    this.userInput = '';
+
+    let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')
+
+    document.body.getElementsByClassName('terminal')[0].appendChild(node);
+
+    // terminal
+    // terminal.nativeElement.insertAdjacentHTML('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>');
+
+    // $('.new-output').velocity(
+    //   'scroll'
+    //   ), { duration: 100 }
+  }
 
   // showKittens() {
   //   $('.terminal').append("<div class='kittens'>" +
@@ -126,3 +133,4 @@ export class HomeComponent {
   //   for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   //   return o;
   // };
+}
