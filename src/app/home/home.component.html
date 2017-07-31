@@ -3,5 +3,6 @@
 </form>
 <div class="terminal">
       <p class="prompt">Welcome to Alan Taylor's portfolio site. To begin, type Hello.</p>
+      <p class="prompt" *ngFor="let item of this.oldInput">{{item}}</p>
       <p class="prompt output new-output">{{this.userInput}}</p>
 </div>

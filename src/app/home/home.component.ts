@@ -1,6 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
+import { NgFor } from '@angular/common';
+
+import { SharedService } from '../shared.service';
 
 // declare var jquery: any;
 // declare var $: any;
@@ -12,11 +15,13 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class HomeComponent{
   userInput: string;
+  oldInput: string[] = [];
   // inputReady: boolean;
   // userInput: string;
   @ViewChild('terminal') terminal:ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private sharedService: SharedService) {
     document.body.style.backgroundColor = "black";
   }
 
@@ -26,7 +31,7 @@ export class HomeComponent{
 
 
   onSubmit(e: NgForm) {
-    console.log("e: ", e);
+    console.log("e: ", this.oldInput);
     if (this.userInput === 'kittens') {
       // this.showKittens();
     } else {
@@ -35,7 +40,10 @@ export class HomeComponent{
   };
 
   resetForm(userInput) {
-    let message = "Sorry that command is not recognized."
+    let message = "Sorry that command is not recognized.";
+    this.oldInput.push(userInput.toString());
+    this.userInput = "";
+
     // this.userInput = '';
 
     let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-sillyness',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sillyness.component.scss']
 })
 export class SillynessComponent implements OnInit {
-
-  constructor() { }
+  message: string[] = [];
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
+
+    this.message.push(this.sharedService.oldInput);
   }
 
 }
