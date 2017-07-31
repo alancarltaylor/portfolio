@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject, AfterViewChecked } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
 import { NgFor } from '@angular/common';
@@ -13,7 +13,9 @@ import { SharedService } from '../shared.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit, AfterViewChecked{
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
   userInput: string;
   oldInput: string[] = [];
   // inputReady: boolean;
@@ -25,13 +27,28 @@ export class HomeComponent{
     document.body.style.backgroundColor = "black";
   }
 
+  ngOnInit() {
+        this.scrollToBottom();
+    }
+
+    ngAfterViewChecked() {
+      console.log("hey! the view is being checked! good thing i added this scroll function so that this window scrolls");
+        this.scrollToBottom();
+    }
+
+    scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }
+    }
+
   // doStuff(){
   //   console.log("hello");
   // }
 
 
   onSubmit(e: NgForm) {
-    console.log("e: ", this.oldInput);
+    // console.log("e: ", this.oldInput);
     if (this.userInput === 'kittens') {
       // this.showKittens();
     } else {
