@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit, AfterViewChecked{
     }
 
     scrollToBottom(): void {
+      console.log("scrollTop: ", this.myScrollContainer.nativeElement.scrollTop);
+      console.log("scrollheight: ", this.myScrollContainer.nativeElement.scrollHeight);
         try {
             this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
         } catch(err) { }
@@ -63,9 +65,9 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
     // this.userInput = '';
 
-    let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')
+    // let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')
 
-    document.body.getElementsByClassName('terminal')[0].appendChild(node);
+    // document.body.getElementsByClassName('terminal')[0].appendChild(node);
 
     // terminal
     // terminal.nativeElement.insertAdjacentHTML('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>');

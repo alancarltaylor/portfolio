@@ -2,7 +2,7 @@
   <form class="four-oh-four-form">
       <input autofocus autocomplete="off" #terminal type="text" (keyup.enter)="onSubmit(terminal.value)" class="404-input" [(ngModel)]="userInput" name="terminal2">
   </form>
-  <div #scrollMe style="height: 0px" class="terminal">
+  <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
         <p class="prompt">Welcome to Alan Taylor's portfolio site. To begin, type Hello.</p>
         <p class="prompt" *ngFor="let item of this.oldInput">{{item}}</p>
         <p class="prompt output new-output">{{this.userInput}}</p>
