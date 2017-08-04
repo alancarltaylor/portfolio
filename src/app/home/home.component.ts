@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   resetForm(userInput) {
     let message = "Sorry that command is not recognized.";
     this.oldInput.push(userInput.toString());
+    this.oldInput.push(message);
     this.userInput = "";
 
     // this.userInput = '';
