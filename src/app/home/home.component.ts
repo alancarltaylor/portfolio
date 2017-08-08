@@ -17,66 +17,73 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   userInput: string;
-  oldInput: string[] = [];
-  // inputReady: boolean;
-  // userInput: string;
+  history: string[] = [];
+  commands: string[] = ["info", "projects", "resume", "linkedin", "bio", "github"];
   @ViewChild('terminal') terminal:ElementRef;
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private sharedService: SharedService) {
-    document.body.style.backgroundColor = "black";
+              document.body.style.backgroundColor = "black";
   }
 
   ngOnInit() {
         this.scrollToBottom();
-    }
+  }
 
-    ngAfterViewChecked() {
-      console.log("hey! the view is being checked! good thing i added this scroll function so that this window scrolls");
-        this.scrollToBottom();
-    }
+  ngAfterViewChecked() {
+      this.scrollToBottom();
+  }
 
-    scrollToBottom(): void {
-      console.log("scrollTop: ", this.myScrollContainer.nativeElement.scrollTop);
-      console.log("scrollheight: ", this.myScrollContainer.nativeElement.scrollHeight);
-        try {
-            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-        } catch(err) { }
-    }
-
-  // doStuff(){
-  //   console.log("hello");
-  // }
-
+  scrollToBottom(): void {
+      try {
+          this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      } catch(err) { }
+  }
 
   onSubmit(e: NgForm) {
-    // console.log("e: ", this.oldInput);
-    if (this.userInput === 'kittens') {
-      // this.showKittens();
-    } else {
-      this.resetForm(e);
-    }
-  };
-
-  resetForm(userInput) {
-    let message = "Sorry that command is not recognized.";
-    this.oldInput.push(userInput.toString());
-    this.oldInput.push(message);
-    this.userInput = "";
-
-    // this.userInput = '';
-
-    // let node = document.createTextNode('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>')
-
-    // document.body.getElementsByClassName('terminal')[0].appendChild(node);
-
-    // terminal
-    // terminal.nativeElement.insertAdjacentHTML('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>');
-
-    // $('.new-output').velocity(
-    //   'scroll'
-    //   ), { duration: 100 }
+    let userInput = e.toString();
+    this.doAllTheThings(userInput);
   }
+
+  doAllTheThings(userInput) {
+    let message = "";
+    let dto = {input: "", output: ""};
+    switch(userInput) {
+    case "hello":
+        message = "hey, what's up man?"
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    case "info":
+        message = "linkedin         github";
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    case "github":
+        message = "there you go";
+        window.open("https://github.com/alancarltaylor");
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    case "linkedin":
+        message = "there you go";
+        window.open("https://www.linkedin.com/in/alan-taylor-84870386/");
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    default:
+        message = "Sorry, that command is not recognized, type info for a list of commands";
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+      }
+  }
+
+  showResponse(dto){
+    this.history.push(dto.input);
+    this.history.push(dto.output);
+    this.userInput = "";
+  }
+
 
   // showKittens() {
   //   $('.terminal').append("<div class='kittens'>" +
@@ -122,44 +129,4 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   //     });
   //   }, (lines.length * 100) + 1000);
   // }
-
-  // textEffect(line) {
-  //   var alpha = [';', '.', ',', ':', ';', '~', '`'];
-  //   var animationSpeed = 10;
-  //   var index = 0;
-  //   var string = line.text();
-  //   var splitString = string.split("");
-  //   var copyString = splitString.slice(0);
-  //
-  //   var emptyString = copyString.map(function(el) {
-  //     return [alpha[Math.floor(Math.random() * (alpha.length))], index++];
-  //   })
-  //
-  //   emptyString = shuffle(emptyString);
-  //
-  //   foreach(copyString, function(i, el) {
-  //     var newChar = emptyString[i];
-  //     toUnderscore(copyString, line, newChar);
-  //
-  //     setTimeout(function() {
-  //       fromUnderscore(copyString, splitString, newChar, line);
-  //     }, i * animationSpeed);
-  //   })
-  // }
-
-  // toUnderscore(copyString, line, newChar) {
-  //   copyString[newChar[1]] = newChar[0];
-  //   line.text(copyString.join(''));
-  // }
-  //
-  // fromUnderscore(copyString, splitString, newChar, line) {
-  //   copyString[newChar[1]] = splitString[newChar[1]];
-  //   line.text(copyString.join(""));
-  // }
-
-
-  // shuffle(o) {
-  //   for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-  //   return o;
-  // };
 }
