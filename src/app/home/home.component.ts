@@ -46,64 +46,87 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   }
 
   doAllTheThings(userInput) {
-    let message = "";
-    let dto = {input: "", output: ""};
+    let message = [""];
+    let dto = {input: "", output: [""]};
     switch(userInput) {
     case "hello":
-        message = "hey, what's up man?"
+        message = ["hey, how's it going?"]
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
     case "info":
-        message = "linkedin         github";
+        message = ["linkedin         github        projects"];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
     case "github":
-        message = "there you go";
+        message = ["there you go"];
         window.open("https://github.com/alancarltaylor");
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
     case "linkedin":
-        message = "there you go";
+        message = ["there you go"];
         window.open("https://www.linkedin.com/in/alan-taylor-84870386/");
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
+    case "projects":
+        message = ["check it out",
+        "                             ,----,         ,----,                                          ,---,",
+        "       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |",
+        "   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :",
+        ",---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;",
+        ":   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |",
+        "|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;",
+        "'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '",
+        "|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |",
+        ":   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;",
+        "'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  ",
+        "|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   ",
+        "'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  ",
+        ";   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; ",
+        "'---'                                              `----'     '---'                        '---`'",
+        " "];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
     default:
-        message = "Sorry, that command is not recognized, type info for a list of commands";
+        message = ["Cool. Well that command is not recognized, type info for a list of commands"];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
       }
   }
 
   showResponse(dto){
+
     this.history.push(dto.input);
-    this.history.push(dto.output);
+    for (let i of dto.output){
+      this.history.push(i);
+    }
     this.userInput = "";
   }
 
 
   // showKittens() {
-  //   $('.terminal').append("<div class='kittens'>" +
-  //     "<p class='prompt'>	                             ,----,         ,----,                                          ,---,</p>" +
-  //     "<p class='prompt'>       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |</p>" +
-  //     "<p class='prompt'>   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :</p>" +
-  //     "<p class='prompt'>,---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;</p>" +
-  //     "<p class='prompt'>:   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |</p>" +
-  //     "<p class='prompt'>|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;</p>" +
-  //     "<p class='prompt'>'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '</p>" +
-  //     "<p class='prompt'>|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |</p>" +
-  //     "<p class='prompt'>:   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;</p>" +
-  //     "<p class='prompt'>'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  </p>" +
-  //     "<p class='prompt'>|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   </p>" +
-  //     "<p class='prompt'>'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  </p>" +
-  //     "<p class='prompt'>;   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; </p>" +
-  //     "<p class='prompt'>'---'                                              `----'     '---'                        '---`'</p>" +
-  //     "<p class='prompt'>                                                              </p></div>");
-  //
-  //
+    // $('.terminal').append("<div class='kittens'>" +
+    //   "<p class='prompt'>	                             ,----,         ,----,                                          ,---,</p>" +
+    //   "<p class='prompt'>       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |</p>" +
+    //   "<p class='prompt'>   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :</p>" +
+    //   "<p class='prompt'>,---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;</p>" +
+    //   "<p class='prompt'>:   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |</p>" +
+    //   "<p class='prompt'>|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;</p>" +
+    //   "<p class='prompt'>'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '</p>" +
+    //   "<p class='prompt'>|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |</p>" +
+    //   "<p class='prompt'>:   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;</p>" +
+    //   "<p class='prompt'>'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  </p>" +
+    //   "<p class='prompt'>|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   </p>" +
+    //   "<p class='prompt'>'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  </p>" +
+    //   "<p class='prompt'>;   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; </p>" +
+    //   "<p class='prompt'>'---'                                              `----'     '---'                        '---`'</p>" +
+    //   "<p class='prompt'>                                                              </p></div>");
+    //
+    //
   //   var lines = $('.kittens p');
   //   $.each(lines, function(index, line) {
   //     setTimeout(function() {
