@@ -13,4 +13,8 @@ export class SillynessComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick(){
+    window.open("https://vidiot.herokuapp.com");
+  }
+
 }
