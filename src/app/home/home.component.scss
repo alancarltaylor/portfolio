@@ -44,10 +44,18 @@ $green: #1ff042;
 	}
 }
 
+.interface{
+	width: auto;
+	margin: -10px;
+	height: 100%;
+	background-color: black;
+}
+
 .terminal{
 	position: relative;
 	padding: 4rem;
 	min-height: 90vh;
+	// width: 110%;
 
 	.prompt{
 		color: $green;

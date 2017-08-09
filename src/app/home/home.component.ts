@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Inject, AfterViewChecked } fr
 import { FormsModule, NgForm } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
 import { NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { SharedService } from '../shared.service';
 
@@ -17,13 +18,14 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   userInput: string;
-  history: string[] = [];
+  history: any[] = [];
   commands: string[] = ["info", "projects", "resume", "linkedin", "bio", "github"];
   @ViewChild('terminal') terminal:ElementRef;
 
   constructor(@Inject(DOCUMENT) private document: Document,
-              private sharedService: SharedService) {
-              document.body.style.backgroundColor = "black";
+              private sharedService: SharedService,
+              private router: Router) {
+              // document.body.style.backgroundColor = "black";
   }
 
   ngOnInit() {
@@ -90,6 +92,8 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         " "];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
+        this.router.navigate(['./projects']);
+
         break;
     default:
         message = ["Cool. Well that command is not recognized, type info for a list of commands"];
@@ -108,48 +112,4 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   }
 
 
-  // showKittens() {
-    // $('.terminal').append("<div class='kittens'>" +
-    //   "<p class='prompt'>	                             ,----,         ,----,                                          ,---,</p>" +
-    //   "<p class='prompt'>       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |</p>" +
-    //   "<p class='prompt'>   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :</p>" +
-    //   "<p class='prompt'>,---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;</p>" +
-    //   "<p class='prompt'>:   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |</p>" +
-    //   "<p class='prompt'>|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;</p>" +
-    //   "<p class='prompt'>'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '</p>" +
-    //   "<p class='prompt'>|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |</p>" +
-    //   "<p class='prompt'>:   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;</p>" +
-    //   "<p class='prompt'>'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  </p>" +
-    //   "<p class='prompt'>|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   </p>" +
-    //   "<p class='prompt'>'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  </p>" +
-    //   "<p class='prompt'>;   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; </p>" +
-    //   "<p class='prompt'>'---'                                              `----'     '---'                        '---`'</p>" +
-    //   "<p class='prompt'>                                                              </p></div>");
-    //
-    //
-  //   var lines = $('.kittens p');
-  //   $.each(lines, function(index, line) {
-  //     setTimeout(function() {
-  //       $(line).css({
-  //         "opacity": 1
-  //       });
-  //
-  //       textEffect($(line))
-  //     }, index * 100);
-  //   });
-  //
-  //   $('.new-output').velocity(
-  //     'scroll'
-  //     ), { duration: 100 }
-  //
-  //   setTimeout(function() {
-  //     var gif;
-  //
-  //     $.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kittens', function(result) {
-  //       gif = result.data.image_url;
-  //       $('.terminal').append('<img class="kitten-gif" src="' + gif + '"">');
-  //       resetForm();
-  //     });
-  //   }, (lines.length * 100) + 1000);
-  // }
 }

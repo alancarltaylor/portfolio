@@ -12,7 +12,10 @@ import { SharedService } from './shared.service';
 const ROUTES = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    children: [
+      { path: 'projects', component: SillynessComponent  }
+    ]
   }
   // ,
   // {

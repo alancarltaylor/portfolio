@@ -1,4 +1,4 @@
-<!-- <div #scrollMe style="overflow: scroll; height: 50px;"> -->
+<div class="interface">  
   <form class="four-oh-four-form">
       <input autofocus autocomplete="off" #terminal type="text" (keyup.enter)="onSubmit(terminal.value)" class="404-input" [(ngModel)]="userInput" name="terminal2">
   </form>
@@ -7,4 +7,5 @@
         <p class="prompt" *ngFor="let item of this.history">{{item}}</p>
         <p class="prompt output new-output">{{this.userInput}}</p>
   </div>
-<!-- </div> -->
+</div>
+  <router-outlet></router-outlet>

@@ -11,8 +11,6 @@ export class SillynessComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-
-    this.message.push(this.sharedService.oldInput);
   }
 
 }
