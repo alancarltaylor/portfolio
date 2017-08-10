@@ -11,6 +11,19 @@
   // position: absolute;
 }
 
-img{
-  color: white;
+.project-card{
+  display: table;
+  margin: 0 auto;
+  img{
+    color: white;
+    // cursor: pointer;
+    height: 50vh;
+    display: table;
+    margin: 0 auto;
+  }
+
+  p{
+    display: table;
+    margin: 0 auto;
+  }
 }
