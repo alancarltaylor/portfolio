@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   userInput: string;
   history: any[] = [];
+  pastCommands: string[] = [""];
   commands: string[] = ["info", "projects", "resume", "linkedin", "bio", "github"];
+  keyUpCount: number = 0;
   @ViewChild('terminal') terminal:ElementRef;
 
   constructor(@Inject(DOCUMENT) private document: Document,
@@ -50,6 +52,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   doAllTheThings(userInput) {
     let message = [""];
     let dto = {input: "", output: [""]};
+    this.keyUpCount = 0;
     switch(userInput) {
     case "hello":
         message = ["hey, how's it going?"]
@@ -74,22 +77,23 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         this.showResponse(dto);
         break;
     case "projects":
-        message = ["check it out",
-        "                             ,----,         ,----,                                          ,---,",
-        "       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |",
-        "   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :",
-        ",---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;",
-        ":   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |",
-        "|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;",
-        "'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '",
-        "|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |",
-        ":   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;",
-        "'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  ",
-        "|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   ",
-        "'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  ",
-        ";   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; ",
-        "'---'                                              `----'     '---'                        '---`'",
-        " "];
+        message = ["check it out"];
+        // ,
+        // "                             ,----,         ,----,                                          ,---,",
+        // "       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |",
+        // "   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :",
+        // ",---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;",
+        // ":   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |",
+        // "|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;",
+        // "'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '",
+        // "|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |",
+        // ":   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;",
+        // "'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  ",
+        // "|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   ",
+        // "'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  ",
+        // ";   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; ",
+        // "'---'                                              `----'     '---'                        '---`'",
+        // " "];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         this.router.navigate(['./projects']);
@@ -103,12 +107,27 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   }
 
   showResponse(dto){
-
     this.history.push(dto.input);
+    this.pastCommands.unshift(dto.input);
     for (let i of dto.output){
       this.history.push(i);
     }
     this.userInput = "";
+  }
+
+  usePastCommands(e){
+    let index = 0;
+    if ((e.keyCode === 40) && (this.keyUpCount < this.pastCommands.length)){
+      this.keyUpCount++;
+      index = this.pastCommands.length - this.keyUpCount;
+      this.userInput = this.pastCommands[index];
+      // this.userInput = index.toString();
+    } else if ((e.keyCode === 38) && (this.keyUpCount >= 1)){
+      this.keyUpCount--;
+      index = this.pastCommands.length - this.keyUpCount;
+      this.userInput = this.pastCommands[index];
+      // this.userInput = index.toString();
+    }
   }
 
 

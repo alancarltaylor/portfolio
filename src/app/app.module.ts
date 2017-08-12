@@ -7,8 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { SillynessComponent } from './sillyness/sillyness.component';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from './shared.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 
 // Define the routes
 const ROUTES = [
@@ -41,12 +42,12 @@ const ROUTES = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
-    BrowserAnimationsModule,
-    MdButtonModule,
-    MdMenuModule,
-    MdCardModule,
-    MdToolbarModule,
-    MdIconModule
+    // BrowserAnimationsModule,
+    // MdButtonModule,
+    // MdMenuModule,
+    // MdCardModule,
+    // MdToolbarModule,
+    // MdIconModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

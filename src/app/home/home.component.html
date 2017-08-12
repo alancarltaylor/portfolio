@@ -1,6 +1,6 @@
 <div class="interface">
   <form class="four-oh-four-form">
-      <input autofocus autocomplete="off" #terminal type="text" (keyup.enter)="onSubmit(terminal.value)" class="404-input" [(ngModel)]="userInput" name="terminal2">
+      <input autofocus autocomplete="off" #terminal type="text" (keyup.enter)="onSubmit(terminal.value)" (keyup)="usePastCommands($event)" class="404-input" [(ngModel)]="userInput" name="terminal2">
   </form>
   <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
         <p class="prompt">Welcome to Alan Taylor's portfolio site. To begin, type Hello.</p>
