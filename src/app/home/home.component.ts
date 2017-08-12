@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   userInput: string;
   history: any[] = [];
-  pastCommands: string[] = [""];
+  pastCommands: string[] = [];
   commands: string[] = ["info", "projects", "resume", "linkedin", "bio", "github"];
   keyUpCount: number = 0;
   @ViewChild('terminal') terminal:ElementRef;
@@ -117,16 +117,20 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   usePastCommands(e){
     let index = 0;
-    if ((e.keyCode === 40) && (this.keyUpCount < this.pastCommands.length)){
+    if ((e.keyCode === 38) && (this.keyUpCount < (this.pastCommands.length))){
       this.keyUpCount++;
       index = this.pastCommands.length - this.keyUpCount;
       this.userInput = this.pastCommands[index];
       // this.userInput = index.toString();
-    } else if ((e.keyCode === 38) && (this.keyUpCount >= 1)){
+      // this.userInput = this.keyUpCount.toString();
+      // this.userInput = this.pastCommands
+    } else if ((e.keyCode === 40) && (this.keyUpCount > 1)){
       this.keyUpCount--;
       index = this.pastCommands.length - this.keyUpCount;
       this.userInput = this.pastCommands[index];
       // this.userInput = index.toString();
+      // this.userInput = this.keyUpCount.toString();
+
     }
   }
 
