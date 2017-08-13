@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
     let message = [""];
     let dto = {input: "", output: [""]};
     this.keyUpCount = 0;
-    switch(userInput) {
+    switch(userInput.toLowerCase()) {
     case "hello":
         message = ["hey, how's it going?"]
         dto = {input: userInput, output: message};
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         this.showResponse(dto);
         break;
     case "projects":
-        message = ["check it out"];
+        message = ["check it out. type 'close' to close the project pane"];
         // ,
         // "                             ,----,         ,----,                                          ,---,",
         // "       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |",
@@ -97,7 +97,12 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         this.router.navigate(['./projects']);
-
+        break;
+    case "close":
+        message = [];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        this.router.navigate(['./']);
         break;
     default:
         message = ["Cool. Well that command is not recognized, type info for a list of commands"];
