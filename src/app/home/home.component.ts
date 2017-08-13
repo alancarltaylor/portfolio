@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   constructor(@Inject(DOCUMENT) private document: Document,
               private sharedService: SharedService,
               private router: Router) {
-              // document.body.style.backgroundColor = "black";
+              document.body.style.margin = "0px";
   }
 
   ngOnInit() {

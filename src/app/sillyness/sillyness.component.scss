@@ -7,23 +7,19 @@
   bottom: 0;
   width: 35%;
   min-width: 250px;
-  z-index: 9999;
-  // position: absolute;
+  padding: 2em 3em;
+  font-family: Helvetica;
 }
 
 .project-card{
-  display: table;
+  width: 400px;
+  display: block;
   margin: 0 auto;
+  background-color: white;
   img{
-    color: white;
-    // cursor: pointer;
-    height: 50vh;
-    display: table;
-    margin: 0 auto;
-  }
-
-  p{
-    display: table;
-    margin: 0 auto;
+    cursor: pointer;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
   }
 }

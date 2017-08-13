@@ -1,5 +1,15 @@
-<div class="project-card">
+<!-- <div class="project-card" >
   <img src="../../assets/vidiot.png" alt="" (click)="onClick()">
   <h3>Vidiot.</h3>
   <p>Watch Reddit like a TV. Select a subreddit, sort, and click through the playlist.</p>
-</div>
+</div> -->
+
+<md-card class="project-card" (click)="onClick()" color="primary">
+  <md-card-header>
+    <md-card-title>Vidiot</md-card-title>
+  </md-card-header>
+  <img md-card-image src="../../assets/vidiot.png">
+  <md-card-content>
+    <p>Watch Reddit like a TV. Select a subreddit, sort, and click through the playlist.</p>
+  </md-card-content>
+</md-card>
