@@ -119,20 +119,17 @@ export class HomeComponent implements OnInit, AfterViewChecked{
     let index = 0;
     if (e.keyCode === 8){
       this.keyUpCount = 0;
-    } else if (e.keyCode === 40){
-      
+    } else if (e.keyCode === 38){
+      if (this.keyUpCount < (this.pastCommands.length)){
+        this.keyUpCount++;
+        this.userInput = this.pastCommands[this.keyUpCount - 1];
+      } else {
+        this.keyUpCount = 1;
+        this.userInput = this.pastCommands[this.keyUpCount - 1];
+      }
     } else if ((e.keyCode === 40) && (this.keyUpCount > 1)){
       this.keyUpCount--;
-      index = this.pastCommands.length - this.keyUpCount;
-      // this.userInput = this.pastCommands[this.keyUpCount - 1];
-      this.userInput = (this.keyUpCount - 1).toString();
-    } else if ((e.keyCode === 38) && (this.keyUpCount < (this.pastCommands.length))){
-      this.keyUpCount++;
-      // this.userInput = this.pastCommands[this.keyUpCount - 1];
-      this.userInput = (this.keyUpCount - 1).toString();
-
+      this.userInput = this.pastCommands[this.keyUpCount - 1];
     }
   }
-
-
 }
