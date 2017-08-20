@@ -4,7 +4,7 @@
   <p>Watch Reddit like a TV. Select a subreddit, sort, and click through the playlist.</p>
 </div> -->
 
-<md-card class="project-card ripplelink" (click)="onClick()" color="primary">
+<md-card class="project-card ripplelink" (click)="onClick($event)" id="https://vidiot.herokuapp.com">
   <md-card-header>
     <md-card-title>Vidiot</md-card-title>
   </md-card-header>
@@ -14,12 +14,22 @@
   </md-card-content>
 </md-card>
 <br><br><br>
-<md-card class="project-card ripplelink" (click)="onClick()" color="primary">
+<md-card class="project-card ripplelink" (click)="onClick($event)" id="https://reincarnation.herokuapp.com">
   <md-card-header>
     <md-card-title>Birth Death Rebirth</md-card-title>
   </md-card-header>
-  <img md-card-image src="../../assets/vidiot.png">
+  <img md-card-image src="../../assets/reincarnation.png">
   <md-card-content>
     <p>Discover your past 5 lives! Totally legit.</p>
+  </md-card-content>
+</md-card>
+<br><br><br>
+<md-card class="project-card ripplelink" (click)="onClick($event)" id="https://caretakr.herokuapp.com">
+  <md-card-header>
+    <md-card-title>Caretakr</md-card-title>
+  </md-card-header>
+  <img md-card-image src="../../assets/caretakr.png">
+  <md-card-content>
+    <p>Keep track of those who depend on you. Login with username: a, password: a</p>
   </md-card-content>
 </md-card>
