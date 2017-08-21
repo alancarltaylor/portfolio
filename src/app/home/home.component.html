@@ -3,7 +3,7 @@
       <input autofocus autocomplete="off" #terminal type="text" (keyup)="usePastCommands($event)" (keyup.enter)="onSubmit(terminal.value)" class="404-input" [(ngModel)]="userInput" name="terminal2">
   </form>
   <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
-        <p class="prompt">Welcome to Alan Taylor's portfolio site. To begin, type Hello.</p>
+        <p class="prompt">Welcome to Alan Taylor's portfolio site. For a list of commands, type info.</p>
         <p class="prompt" *ngFor="let item of this.history">{{item}}</p>
         <p class="prompt output new-output">{{this.userInput}}</p>
   </div>
