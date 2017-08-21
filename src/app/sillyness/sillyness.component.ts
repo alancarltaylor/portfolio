@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { SharedService } from '../shared.service';
 
 // import slide in/out animation
