@@ -6,9 +6,6 @@ import { Router } from '@angular/router';
 
 import { SharedService } from '../shared.service';
 
-// declare var jquery: any;
-// declare var $: any;
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -60,7 +57,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         this.showResponse(dto);
         break;
     case "info":
-        message = ["linkedin         github        projects"];
+        message = ["linkedin         github        projects        resume"];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
@@ -104,6 +101,19 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         this.showResponse(dto);
         this.router.navigate(['./']);
         break;
+    case "resume":
+        message = [];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        window.open("https://docs.google.com/document/d/1hOighgLyBw8wOcHxPK4hMqAfHg6z0Pksab1vy_3BhB8/edit?usp=sharing");
+        this.router.navigate(['./']);
+        break;
+    case "clear":
+        message = [];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        this.router.navigate(['./']);
+        break;
     default:
         message = ["Cool. Well that command is not recognized, type info for a list of commands"];
         dto = {input: userInput, output: message};
@@ -113,6 +123,9 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   showResponse(dto){
     this.history.push(dto.input);
+    if (dto.input === 'clear'){
+      this.history = [];
+    }
     this.pastCommands.unshift(dto.input);
     for (let i of dto.output){
       this.history.push(i);
