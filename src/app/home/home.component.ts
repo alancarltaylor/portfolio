@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild, Inject, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject, AfterViewChecked, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
 import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
+
 
 import { SharedService } from '../shared.service';
 
@@ -25,6 +26,14 @@ export class HomeComponent implements OnInit, AfterViewChecked{
               private sharedService: SharedService,
               private router: Router) {
               document.body.style.margin = "0px";
+  }
+
+
+  public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
+
+  focusFunction(){
+    console.log("something blurred");
+    this.myFocusTriggeringEventEmitter.emit(true);
   }
 
   ngOnInit() {

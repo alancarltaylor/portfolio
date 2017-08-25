@@ -10,6 +10,7 @@ import { SharedService } from './shared.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { FocusDirective } from './focus.directive';
 
 // Define the routes
 const ROUTES = [
@@ -35,13 +36,14 @@ const ROUTES = [
   declarations: [
     AppComponent,
     HomeComponent,
-    SillynessComponent
+    SillynessComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
     BrowserAnimationsModule,
     MdButtonModule,
     MdMenuModule,
