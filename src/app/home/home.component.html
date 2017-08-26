@@ -9,8 +9,9 @@
       class="404-input"
       [(ngModel)]="userInput"
       name="terminal2"
-      (blur)="focusFunction()"
-      [focus]="myFocusTriggeringEventEmitter">
+      [focus]="myFocusTriggeringEventEmitter"
+      style="color: transparent;"
+      style="font-size: 40px;">
   </form>
   <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
         <p class="prompt">Welcome to Alan Taylor's portfolio site. For a list of commands, type info.</p>
