@@ -48,11 +48,12 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
 
-  @HostListener('document:click', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
   clickout(event) {
-console.log(this.activatedRoute.url.toString());
-    this.visible = !this.visible;
-        if (this.activatedRoute.url[0] === "projects") {
+    console.log(this.router.routerState.snapshot.url);
+    // this.visible = !this.visible;
+        if (this.router.routerState.snapshot.url === "/projects") {
+            console.log("pretty glad we only get here when url is /projects. phew man! very glad actually");
             this.unregister = this.renderer.listenGlobal('document', 'touchstart', () => {
                 this.myFocusTriggeringEventEmitter.emit(false);
                 this.unregister();
@@ -86,7 +87,7 @@ console.log(this.activatedRoute.url.toString());
 
   focusFunction(){
     console.log("different console log statement so i know things are saving");
-    this.myFocusTriggeringEventEmitter.emit(true);
+    // this.myFocusTriggeringEventEmitter.emit(true);
   //   if (this.clicked && this.tablet){
   //     this.myFocusTriggeringEventEmitter.emit(true)
   // } else if (!this.tablet){
