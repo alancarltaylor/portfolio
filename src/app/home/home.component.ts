@@ -34,15 +34,15 @@ export class HomeComponent implements OnInit, AfterViewChecked{
               private router: Router,
               private _eref: ElementRef,
               private renderer: Renderer,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
             ) {
-              const mql: MediaQueryList = window.matchMedia('(min-width: 600px)');
               document.body.style.margin = "0px";
-              mql.addListener((mql: MediaQueryList) => {
-                mql.matches ?
-                this.tablet = false :
+              console.log("window: ", window.screen.width);
+              if (window.screen.width >= 600){
+                this.tablet = false;
+              } else {
                 this.tablet = true;
-          });
+              }
   }
 
 
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
     // if (this.clicked){
     // }
 
-    this.clicked = !this.clicked;
+    // this.clicked = !this.clicked;
     // alert(this.clicked);
     // if ((event.path[0].className) === "ng-tns-c2-0 ng-trigger ng-trigger-slideInOutAnimation"){
     //   // alert("clicked outside the terminal thing, great!");
@@ -86,14 +86,15 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   }
 
   focusFunction(){
-    console.log("different console log statement so i know things are saving");
+    // console.log("different console log statement so i know things are saving");
+    console.log("this.tablet? ", this.tablet);
     // this.myFocusTriggeringEventEmitter.emit(true);
-  //   if (this.clicked && this.tablet){
-  //     this.myFocusTriggeringEventEmitter.emit(true)
-  // } else if (!this.tablet){
-  //   this.myFocusTriggeringEventEmitter.emit(true)
-  // }
-  //   this.clicked = true;
+    if (!this.tablet){
+      this.myFocusTriggeringEventEmitter.emit(true)
+  } else {
+    this.myFocusTriggeringEventEmitter.emit(false)
+  }
+    // this.clicked = true;
   }
 
   ngOnInit() {
@@ -144,7 +145,11 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         this.showResponse(dto);
         break;
     case "projects":
-        message = ["check it out. type 'close' to close the project pane"];
+        if (this.tablet){
+          message = [];
+        } else {
+          message = ["check it out. type 'close' to close the project pane"];
+        }
         // ,
         // "                             ,----,         ,----,                                          ,---,",
         // "       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |",

@@ -11,9 +11,9 @@
       name="terminal2"
       [focus]="myFocusTriggeringEventEmitter"
       style="color: transparent;"
+      (blur)="focusFunction()"
       style="font-size: 40px;">
   </form>
-  <!-- (blur)="focusFunction()" -->
   <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
         <p class="prompt">Welcome to Alan Taylor's portfolio site. For a list of commands, type info.</p>
         <p class="prompt" *ngFor="let item of this.history">{{item}}</p>
