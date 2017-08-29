@@ -37,13 +37,21 @@ export class HomeComponent implements OnInit, AfterViewChecked{
   pastCommands: string[] = [];
   commands: string[] = ["info", "projects", "resume", "linkedin", "bio", "github"];
   keyUpCount: number = 0;
+  openProjects: any;
   @ViewChild('terminal') terminal:ElementRef;
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private sharedService: SharedService,
               private router: Router,
-              private _eref: ElementRef) {
+              private _eref: ElementRef,
+            ) {
+              const mql: MediaQueryList = window.matchMedia('(min-width: 600px)');
               document.body.style.margin = "0px";
+              mql.addListener((mql: MediaQueryList) => {
+                this.openProjects = mql.matches ?
+                this.router.navigate(['./projects']) :
+                window.open("https://www.linkedin.com/in/alan-taylor-84870386/");
+          });
   }
 
 
@@ -57,6 +65,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   ngOnInit() {
         this.scrollToBottom();
+
   }
 
   ngAfterViewChecked() {
@@ -121,7 +130,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         // " "];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
-        this.router.navigate(['./projects']);
+        this.openProjects;
         break;
     case "close":
         message = [];
