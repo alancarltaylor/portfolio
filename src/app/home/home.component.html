@@ -15,7 +15,7 @@
       style="font-size: 40px;">
   </form>
   <div #scrollMe style="overflow: scroll; height: 5px" class="terminal">
-        <p class="prompt">Welcome to Alan Taylor's portfolio site. For a list of commands, type info.</p>
+        <p class="prompt">Welcome to Alan Taylor's portfolio site. For a list of commands, type 'info'</p>
         <p class="prompt" *ngFor="let item of this.history">{{item}}</p>
         <p class="prompt output new-output">{{this.userInput}}</p>
   </div>

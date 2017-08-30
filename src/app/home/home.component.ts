@@ -114,6 +114,9 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   onSubmit(e: NgForm) {
     let userInput = e.toString();
+    if (userInput[userInput.length - 1] === " "){
+      userInput = userInput.slice(0, -1);
+    }
     this.doAllTheThings(userInput);
   }
 
@@ -129,6 +132,16 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         break;
     case "info":
         message = ["linkedin         github        projects        resume"];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    case "'info'":
+        message = ["ok, not 'info' literally, info without quotation marks. like, just info"];
+        dto = {input: userInput, output: message};
+        this.showResponse(dto);
+        break;
+    case "project":
+        message = ["not project, projects, with an s"];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
         break;
