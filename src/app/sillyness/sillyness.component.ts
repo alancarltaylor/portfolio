@@ -21,7 +21,6 @@ export class SillynessComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    console.log("i love how consistently console logs work")
   }
 
   onClick(e){

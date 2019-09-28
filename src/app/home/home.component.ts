@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit, AfterViewChecked{
               private activatedRoute: ActivatedRoute,
             ) {
               document.body.style.margin = "0px";
-              console.log("window: ", window.screen.width);
               if (window.screen.width >= 600){
                 this.tablet = false;
               } else {
@@ -50,10 +49,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
 
   @HostListener('document:touchstart', ['$event'])
   clickout(event) {
-    console.log(this.router.routerState.snapshot.url);
-    // this.visible = !this.visible;
         if (this.router.routerState.snapshot.url === "/projects") {
-            console.log("pretty glad we only get here when url is /projects. phew man! very glad actually");
             this.unregister = this.renderer.listenGlobal('document', 'touchstart', () => {
                 this.myFocusTriggeringEventEmitter.emit(false);
                 this.unregister();
@@ -61,40 +57,14 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         } else {
           this.myFocusTriggeringEventEmitter.emit(true);
         }
-    // let thing = 1;
-    // console.log("thing i'm clicking", this._eref);
-    // console.log("event target: ", event);
-    // console.log("event.path: ", event.path[0].className);
-  //   if (event.path[0].className == "prompt output new-output"){
-  //
-  //   this.myFocusTriggeringEventEmitter.emit(true);
-  // }
-    // if (this.clicked){
-    // }
-
-    // this.clicked = !this.clicked;
-    // alert(this.clicked);
-    // if ((event.path[0].className) === "ng-tns-c2-0 ng-trigger ng-trigger-slideInOutAnimation"){
-    //   // alert("clicked outside the terminal thing, great!");
-    //   this.myFocusTriggeringEventEmitter.emit(false);
-    // } else {
-    //   this.myFocusTriggeringEventEmitter.emit(true);
-    // }
-    // doSomething();
-
-    // this.clicked = !this.clicked;
   }
 
   focusFunction(){
-    // console.log("different console log statement so i know things are saving");
-    console.log("this.tablet? ", this.tablet);
-    // this.myFocusTriggeringEventEmitter.emit(true);
     if (!this.tablet){
       this.myFocusTriggeringEventEmitter.emit(true)
   } else {
     this.myFocusTriggeringEventEmitter.emit(false)
   }
-    // this.clicked = true;
   }
 
   ngOnInit() {
@@ -181,7 +151,6 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         // " "];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
-        // this.handleScreenSize();
         this.router.navigate(['./projects']);
         break;
     case "close":
@@ -226,7 +195,6 @@ export class HomeComponent implements OnInit, AfterViewChecked{
     this.tablet ?
     window.open("https://docs.google.com/document/d/1hOighgLyBw8wOcHxPK4hMqAfHg6z0Pksab1vy_3BhB8/edit?usp=sharing") :
     this.router.navigate(['./projects']);
-
   }
 
   usePastCommands(e){
