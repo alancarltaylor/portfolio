@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit, AfterViewChecked{
         message = [];
         dto = {input: userInput, output: message};
         this.showResponse(dto);
-        window.open("https://docs.google.com/document/d/1hOighgLyBw8wOcHxPK4hMqAfHg6z0Pksab1vy_3BhB8/edit?usp=sharing");
+        window.open("https://docs.google.com/document/d/1xDZTUaSyZovaEwADz8UeJ0adFN9pBdzKr-FZRx5YYkA/edit?usp=sharing");
         this.router.navigate(['./']);
         break;
     case "clear":
