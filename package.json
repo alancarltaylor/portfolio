@@ -12,6 +12,10 @@
     "predeploy": "ng build --env=prod --verbose",
     "deploy": "node ./scripts/deploy.js"
   },
+  "engines": {
+    "node": "8.1.4",
+    "npm": "5.2.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.3.3",
