@@ -43,7 +43,7 @@ const ROUTES = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES),
     BrowserAnimationsModule,
     MdButtonModule,
     MdMenuModule,
